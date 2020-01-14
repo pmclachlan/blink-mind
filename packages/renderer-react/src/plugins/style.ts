@@ -117,6 +117,11 @@ export function StylePlugin() {
       subLinkStyle = { ...subLinkStyle, ...presetStyle };
 
       const topic = model.getTopic(topicKey);
+
+      if (!topic) {
+        throw new Error(`Unknown topicKey ${topicKey}`);
+      }
+
       // 获取父节点的color
       if (theme.randomColor) {
         const randomColor = controller.run('getRandomColor', props);

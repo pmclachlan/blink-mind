@@ -7,7 +7,7 @@ import { Topic } from './topic';
 
 export type ExtData = Map<string, any>;
 
-type ModelRecordType = {
+export type ModelRecordType = {
   topics: Map<KeyType, Topic>;
   extData: ExtData; //用于插件做数据扩展
   config: Config;

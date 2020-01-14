@@ -6,7 +6,7 @@ import { collapseRefKey } from '../../utils';
 
 const Icon = styled.div`
   position: absolute;
-  top: calc(50% - 10px);
+  top: calc(45% - 6.5px);
   ${({ dir }) => {
     if (dir === TopicDirection.RIGHT)
       return css`
@@ -18,14 +18,11 @@ const Icon = styled.div`
       `;
   }};
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
   text-align: center;
-  //@ts-ignore
-  background: ${props => props.background};
   cursor: pointer;
   padding: 0;
-  font-size: 14px;
+  color: #5C7080;
+  font-size: 12px !important;
   line-height: 20px;
   border: 0;
   z-index: 2;

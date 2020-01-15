@@ -161,7 +161,7 @@ export function LayoutPlugin() {
         getRef,
         topicKey,
         model,
-        moveDir = MoveTopicDir.LEFT_CENTER
+        moveDir = MoveTopicDir.CENTER
       } = props;
       if (
         model.editorRootTopicKey !== topicKey &&

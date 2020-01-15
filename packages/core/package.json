@@ -6,13 +6,15 @@
   "main": "lib/main.js",
   "module": "lib/main.es.js",
   "umd": "dist/main.js",
-  "version": "0.0.20-beta.8",
+  "types": "lib/index.d.ts",
+  "version": "0.0.20-beta.10",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "clean": "rimraf lib"
   },
   "peerDependencies": {
     "debug": "2.6.9",

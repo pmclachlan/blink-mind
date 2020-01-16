@@ -1,5 +1,9 @@
 import { BaseProps } from '@blink-mind/renderer-react';
-import { ContextMenuTarget, Divider, Menu } from '@blueprintjs/core';
+import { Divider, Menu } from '@blueprintjs/core';
+
+// See @alxmiron at https://github.com/palantir/blueprint/issues/3604
+// import { ContextMenuTarget } from '@blueprintjs/core';
+import {ContextMenuTarget} from '@blueprintjs/core/lib/esnext/components/context-menu/contextMenuTarget.js';
 import * as React from 'react';
 import styled from 'styled-components';
 import { TagRecord } from '../ext-data-tags';

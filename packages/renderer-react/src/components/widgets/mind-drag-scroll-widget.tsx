@@ -1,6 +1,9 @@
 import { Controller, FocusMode, Model } from '@blink-mind/core';
 import { HotKeysConfig } from '../../types';
-import { Hotkey, Hotkeys, HotkeysTarget } from '@blueprintjs/core';
+import { Hotkey, Hotkeys } from '@blueprintjs/core';
+
+// See @alxmiron at https://github.com/palantir/blueprint/issues/3604
+import {HotkeysTarget} from '@blueprintjs/core/lib/esnext/components/hotkeys/hotkeysTarget.js';
 import * as React from 'react';
 import styled from 'styled-components';
 import { EventKey, RefKey, topicRefKey } from '../../utils';

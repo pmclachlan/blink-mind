@@ -1,5 +1,8 @@
 import { FocusMode, OpType, TopicDirection } from '@blink-mind/core';
-import { ContextMenuTarget } from '@blueprintjs/core';
+
+// See @alxmiron at https://github.com/palantir/blueprint/issues/3604
+// import { ContextMenuTarget } from '@blueprintjs/core';
+import {ContextMenuTarget} from '@blueprintjs/core/lib/esnext/components/context-menu/contextMenuTarget.js';
 import debug from 'debug';
 import * as React from 'react';
 import styled from 'styled-components';

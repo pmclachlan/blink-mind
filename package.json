@@ -67,7 +67,7 @@
     "source-map-loader": "^0.2.4",
     "ts-jest": "^24.1.0",
     "tslint": "5.10.0",
-    "typescript": "^3.5.3",
+    "typescript": "^3.7.4",
     "typescript-plugin-styled-components": "^1.4.3"
   },
   "husky": {

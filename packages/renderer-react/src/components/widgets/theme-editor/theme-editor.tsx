@@ -1,9 +1,15 @@
 import { isThemeType, OpType, ThemeType, TopicStyle } from '@blink-mind/core';
 import { Alert, Tab, Tabs } from '@blueprintjs/core';
-import { clone, merge } from 'lodash';
+import debug from 'debug';
+import { cloneDeep, merge } from 'lodash';
 import * as React from 'react';
 import { useState } from 'react';
-import { browserDownloadText, browserOpenFile } from '../../../utils';
+import {
+  browserDownloadText,
+  browserOpenFile,
+  getI18nText,
+  I18nKey
+} from '../../../utils';
 import { handleBooleanChange } from '../../../utils/blueprint';
 import {
   BaseProps,
@@ -18,24 +24,28 @@ import {
   StyledCheckbox
 } from '../../common';
 import { TopicThemeEditor, TopicThemeEditorProps } from './topic-theme-editor';
+const log = debug('node:theme-editor');
 
 let tabId = 'normal';
 
 export function ThemeEditor(props: BaseProps) {
   const [alertThemeError, setAlertThemeError] = useState(false);
   const { model, controller } = props;
-  const theme: ThemeType = model.config.theme;
 
-  const { rootTopic, primaryTopic, normalTopic } = controller.run(
-    'getThemeOfTopic',
-    props
-  );
+  // 注意这里一定要用cloneDeep
+  const theme: ThemeType = cloneDeep(model.config.theme);
+
+  const {
+    rootTopic,
+    primaryTopic,
+    normalTopic
+  } = controller.run('getThemeOfTopic', { ...props, isClone: true });
 
   const setTheme = theme => {
     controller.run('operation', {
       ...props,
       opType: OpType.SET_THEME,
-      theme: clone(theme)
+      theme
     });
   };
 
@@ -64,6 +74,7 @@ export function ThemeEditor(props: BaseProps) {
   };
 
   const rootTopicEditorProps: TopicThemeEditorProps = {
+    ...props,
     topicStyle: rootTopic,
     setTopicStyle: setRootTopicStyle
   };
@@ -71,6 +82,7 @@ export function ThemeEditor(props: BaseProps) {
   const rootTopicEditor = <TopicThemeEditor {...rootTopicEditorProps} />;
 
   const primaryTopicEditorProps: TopicThemeEditorProps = {
+    ...props,
     topicStyle: primaryTopic,
     setTopicStyle: setPrimaryTopicStyle
   };
@@ -78,6 +90,7 @@ export function ThemeEditor(props: BaseProps) {
   const primaryTopicEditor = <TopicThemeEditor {...primaryTopicEditorProps} />;
 
   const normalTopicEditorProps: TopicThemeEditorProps = {
+    ...props,
     topicStyle: normalTopic,
     setTopicStyle: setNormalTopicStyle
   };
@@ -94,9 +107,21 @@ export function ThemeEditor(props: BaseProps) {
   const topicThemes = (
     <SettingBoxContainer>
       <Tabs {...tabsProps}>
-        <Tab id="normal" title="NormalTopic" panel={normalTopicEditor} />
-        <Tab id="primary" title="PrimaryTopic" panel={primaryTopicEditor} />
-        <Tab id="root" title="RootTopic" panel={rootTopicEditor} />
+        <Tab
+          id="normal"
+          title={getI18nText(props, I18nKey.NORMAL_TOPIC)}
+          panel={normalTopicEditor}
+        />
+        <Tab
+          id="primary"
+          title={getI18nText(props, I18nKey.PRIMARY_TOPIC)}
+          panel={primaryTopicEditor}
+        />
+        <Tab
+          id="root"
+          title={getI18nText(props, I18nKey.ROOT_TOPIC)}
+          panel={rootTopicEditor}
+        />
       </Tabs>
     </SettingBoxContainer>
   );
@@ -131,19 +156,25 @@ export function ThemeEditor(props: BaseProps) {
   return (
     <PanelTabRoot>
       <SettingGroup>
-        <SettingTitle>Global</SettingTitle>
+        <SettingTitle>{getI18nText(props, I18nKey.GLOBAL)}</SettingTitle>
         <SettingRow>
-          <SettingLabel>Background:</SettingLabel>
+          <SettingLabel>
+            {getI18nText(props, I18nKey.BACKGROUND) + ':'}
+          </SettingLabel>
           <SettingItemColorPicker
             color={theme.background}
             handleColorChange={handleBackgroundColorChange}
           />
-          <SettingLabel>Highlight:</SettingLabel>
+          <SettingLabel>
+            {getI18nText(props, I18nKey.HIGHLIGHT) + ':'}
+          </SettingLabel>
           <SettingItemColorPicker
             color={theme.highlightColor}
             handleColorChange={handleHighlightColorChange}
           />
-          <SettingLabel>Random Color:</SettingLabel>
+          <SettingLabel>
+            {getI18nText(props, I18nKey.RANDOM_COLOR) + ':'}
+          </SettingLabel>
           <StyledCheckbox
             checked={theme.randomColor}
             onChange={handleRandomColorChange}
@@ -153,8 +184,14 @@ export function ThemeEditor(props: BaseProps) {
       {topicThemes}
 
       <SettingGroup>
-        <SettingItemButton title="Export Theme" onClick={handleExportTheme} />
-        <SettingItemButton title="Import Theme" onClick={handleImportTheme} />
+        <SettingItemButton
+          title={getI18nText(props, I18nKey.EXPORT_THEME)}
+          onClick={handleExportTheme}
+        />
+        <SettingItemButton
+          title={getI18nText(props, I18nKey.IMPORT_THEME)}
+          onClick={handleImportTheme}
+        />
       </SettingGroup>
 
       {/*<Dialog*/}

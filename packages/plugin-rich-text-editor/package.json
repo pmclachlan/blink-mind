@@ -6,7 +6,8 @@
   "main": "./lib/main.js",
   "module": "lib/main.es.js",
   "umd": "dist/main.js",
-  "version": "0.0.20-beta.10",
+  "types": "lib/index.d.ts",
+  "version": "0.0.20-beta.11",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
@@ -17,11 +18,11 @@
   "peerDependencies": {
     "debug": "*",
     "react": "*",
-    "styled-components": "*"
+    "styled-components": "*",
+    "@blink-mind/core": "*",
+    "@blink-mind/renderer-react": "*"
   },
   "dependencies": {
-    "@blink-mind/core": "^0.0.20-beta.10",
-    "@blink-mind/renderer-react": "^0.0.20-beta.10",
     "awehook-rich-markdown-editor": "^1.0.1",
     "slate-md-serializer": "^5.4.4"
   },

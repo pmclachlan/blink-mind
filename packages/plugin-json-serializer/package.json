@@ -6,7 +6,8 @@
   "main": "./lib/main.js",
   "module": "lib/main.es.js",
   "umd": "dist/main.js",
-  "version": "0.0.20-beta.10",
+  "types": "lib/index.d.ts",
+  "version": "0.0.20-beta.11",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
@@ -16,10 +17,11 @@
   },
   "peerDependencies": {
     "debug": "*",
-    "immutable": "*"
+    "immutable": "*",
+    "@blink-mind/core": "*"
   },
   "dependencies": {
-    "@blink-mind/core": "^0.0.20-beta.10"
+
   },
   "gitHead": "0a975dead37d717608e7661df1291ea38b441c0e"
 }

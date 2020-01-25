@@ -21,7 +21,7 @@ const Icon = styled.div`
   text-align: center;
   cursor: pointer;
   padding: 0;
-  color: #5C7080;
+  color: #bbc8d2;
   font-size: 12px !important;
   line-height: 20px;
   border: 0;
